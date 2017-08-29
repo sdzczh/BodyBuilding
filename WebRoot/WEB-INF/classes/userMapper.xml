@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.dao.IUserDao">
+    <resultMap id="BaseResultMap" type="com.cn.pojo.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="uteach" property="uteach" jdbcType="INTEGER"/>
+        <result column="uclass" property="uclass" jdbcType="INTEGER"/>
+        <collection property="teachs" javaType="java.util.List"  ofType="com.cn.pojo.Teach">  
+            <id column="id" property="id" jdbcType="INTEGER" />  
+            <result column="tname" property="tname" jdbcType="VARCHAR" />  
+            <result column="ttel" property="ttel" jdbcType="VARCHAR" />  
+            <result column="taddress" property="taddress" jdbcType="VARCHAR" />  
+            <result column="cid" property="cid" jdbcType="INTEGER"/>
+        </collection>
+        <collection property="courses" javaType="java.util.List"  ofType="com.cn.pojo.Course">  
+            <id column="id" property="id" jdbcType="INTEGER" />  
+            <result column="cname" property="cname" jdbcType="VARCHAR" />  
+        </collection>
+    </resultMap>
+        <resultMap id="AdminResultMap" type="com.cn.pojo.Admin">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="lastlogintime" property="lastlogintime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="userLogin" resultMap="BaseResultMap" parameterType="com.cn.pojo.User">
+        select  id  from user where account = #{0} and pwd = #{1}
+    </select>
+    <select id="findUserByAccount" resultMap="BaseResultMap" parameterType="com.cn.pojo.User">
+        SELECT  u.*,t.*,c.`cname`  FROM user u,teach t,course c WHERE account = #{account} AND u.`uteach`=t.`id` AND u.`uclass`=c.`id`
+    </select>
+    <select id="findClass"  resultType="HashMap">
+        SELECT  * FROM course 
+    </select>
+    <select id="findSeTeach"  resultType="HashMap">
+        SELECT * FROM teach WHERE cid=#{id}
+    </select>
+    <select id="countUser" resultType="HashMap">
+        SELECT COUNT(id) countUser FROM user  
+    </select>
+    <select id="countTeach" resultType="HashMap">
+        SELECT COUNT(id) countTeach FROM teach  
+    </select>
+    <select id="countApparatus" resultType="HashMap">
+        SELECT COUNT(id) countApparatus FROM apparatus   where astate=0
+    </select>
+    <select id="findAccount" resultType="HashMap">
+        SELECT id  FROM user where account=#{account}  
+    </select>
+    <update id="chooseTeach">
+		update user
+		<set>
+			uteach=#{0},uclass=#{1}
+		</set>
+		where id=#{2}
+	</update>
+    <update id="updateUserInfo">
+		update user
+		<set>
+			account=#{account},
+			<if test="sex!=null">
+      		   sex = ${sex},
+      		</if>
+			<if test="age!=null">
+      		  age = ${age},
+      		</if>
+			<if test="name!=null">
+      		  name = #{name},
+      		</if>
+			<if test="pwd!=null">
+      		  pwd = #{pwd},
+      		</if>
+			<if test="tel!=null">
+      		  tel = #{tel},
+      		</if>
+			<if test="address!=null">
+      		  address = #{address},
+      		</if>
+		</set>
+		where id=#{id}
+	</update>
+    <update id="upTeach">
+		update teach
+		<set>
+			cid=${cid},
+			<if test="tname!=null">
+      		  tname = #{tname},
+      		</if>
+			
+			<if test="ttel!=null">
+      		  ttel = #{ttel},
+      		</if>
+			<if test="taddress!=null">
+      		  taddress = #{taddress},
+      		</if>
+		</set>
+		where id=#{id}
+	</update>
+    <select id="adminLogin"  parameterType="com.cn.pojo.Admin" resultMap="AdminResultMap" >
+        SELECT lastlogintime FROM admin WHERE name=#{name} and pwd=#{pwd}
+    </select>
+    <update id="setTime">
+		update admin
+		<set>
+			lastlogintime=#{format}
+		</set>
+		where name='admin'
+	</update>
+    <update id="delApp">
+		update apparatus
+		<set>
+			astate=1
+		</set>
+		where id=#{id}
+	</update>
+	<select id="getSex" resultType="hashmap">
+		SELECT sex ,COUNT(sex) AS num FROM user GROUP BY sex
+	</select>
+	<select id="findUser" resultType="hashmap">
+		SELECT * FROM user 
+	</select>
+	<select id="teachTable" resultType="hashmap">
+		SELECT * FROM teach 
+	</select>
+	<select id="apparatusTable" resultType="hashmap">
+		SELECT * FROM apparatus where astate=0
+	</select>
+	<insert id="registerUser"  useGeneratedKeys="true">
+  		insert into user(id,name, pwd,account,age,sex,tel,address) values(null, #{name}, #{pwd}, #{account}, ${age},${sex},#{tel},#{address})
+	</insert>
+	<insert id="addTeachInfo"  useGeneratedKeys="true">
+  		insert into teach(id,tname,cid,ttel,taddress) values(null, #{tname}, #{cid}, #{ttel}, #{taddress})
+	</insert>
+	<insert id="addAppInfo"  useGeneratedKeys="true">
+  		insert into apparatus(id,aname,astate) values(null, #{aname}, 0)
+	</insert>
+	<delete id="delUser">
+	 DELETE FROM user where id=#{id}
+	</delete>
+	<delete id="delTeach">
+	 DELETE FROM teach where id=#{id}
+	</delete>
+
+</mapper>
