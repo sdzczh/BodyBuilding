@@ -154,7 +154,7 @@
                                         	<td>
                                         	
                                         	<button class="btn btn-primary btn-fill " onclick="update(${list.id},'${list.account}','${list.name}','${list.pwd}',${list.sex},${list.age},'${list.tel}','${list.address}')">编辑</button>
-                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})">删除</button>
+                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})" disabled="disabled">删除</button>
                                         	</td> 
                                         </tr>
                                     </c:forEach>

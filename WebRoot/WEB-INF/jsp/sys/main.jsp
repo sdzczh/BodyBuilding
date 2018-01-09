@@ -133,7 +133,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                      <a href="loginForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
+                                      <a href="ForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="loginForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
+                                        <a href="ForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <a href="loginForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
+                                        <a href="ForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                     
                                     <hr>
                                     <div class="stats">
-                                       &nbsp;&nbsp;<a href="loginForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
+                                       &nbsp;&nbsp;<a href="ForwardAdmin"> <i class="ti-reload"></i> Updated now</a> 
                                     </div>
                             </div>
                         </div>

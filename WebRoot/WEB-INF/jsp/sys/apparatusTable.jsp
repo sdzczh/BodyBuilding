@@ -139,7 +139,7 @@
 											</td>
                                         	<td>
                                         	
-                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})">删除</button>
+                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})" disabled="disabled">删除</button>
                                         	</td> 
                                         </tr>
                                     </c:forEach>

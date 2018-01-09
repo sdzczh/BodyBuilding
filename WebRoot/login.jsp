@@ -340,5 +340,17 @@ var type = document.getElementById("type").value;
 <br><br>
 
 </div>
+    <style type="text/css">
+    a:link{text-decoration: none; color:blue; font-size: 18px; font-family: 微软雅黑;}
+    a:visited{ color:green;}
+    a:hover{text-decoration: underline; color:#09f; font-size: 19px;}
+    a:active{text-decoration: blink; color: yellow;}
+    </style>
+<div style="  
+    margin-left: 775px;
+    margin-top: 600px;
+    font-size: x-large;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录帐号联系<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=615745258&site=qq&menu=yes" alt="点击这里给我发消息" title="点击这里给我发消息" >QQ:615745258</a><br>
+    代做java毕业设计，详情查看<a href="http://alih.cc" target="_black">alih.cc</a>
+    </div> 
 </body>
 </html>

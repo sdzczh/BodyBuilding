@@ -30,7 +30,6 @@
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cn.dao" />
-        <!--这里就是value，不要有疑问，真的-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 

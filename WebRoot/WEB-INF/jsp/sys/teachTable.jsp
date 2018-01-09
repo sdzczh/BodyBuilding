@@ -140,7 +140,7 @@
                                         	<td>${list.cid}号课程</td>
                                         	<td>
                                         	<button class="btn btn-primary btn-fill " onclick="update(${list.id},'${list.tname}','${list.ttel}','${list.taddress}',${list.cid})">编辑</button>
-                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})">删除</button>
+                                        	<button class="btn btn-danger btn-fill " onclick="del(${list.id})" disabled="disabled">删除</button>
                                         	</td> 
                                         </tr>
                                     </c:forEach>
